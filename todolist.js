@@ -1,5 +1,6 @@
 const todoBox = document.querySelector("section");
 const inp = document.querySelector("input");
+const form = document.querySelector("form")
 const addTask = document.querySelector("#addbtn");
 const enterTaskModal = document.querySelector(".et");
 const errorMessage = document.querySelector("#error-message");
@@ -53,7 +54,8 @@ function toggleArrow() {
     }
 }
 
-addTask.addEventListener("click", () => {
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
     let task = inp.value.trim();
     let categoryValue = customDropdown.getAttribute("data-value");
     let categoryHTML = selectedSpan.innerHTML;
@@ -115,6 +117,7 @@ addTask.addEventListener("click", () => {
     const delBtn = taskBar.querySelector(".del");
     const offBtn = taskBar.querySelector(".off");
     const taskContext = taskBar.querySelector(".task-context");
+    const categoryBadge = taskBar.querySelector(".task-category-badge");
 
     function updateButtons() {
         if (taskContext.classList.contains("completed")) {
@@ -154,11 +157,75 @@ addTask.addEventListener("click", () => {
         updateButtons();
     });
 
+    function getCategoryHTML(category) {
+        if (category === "Shopping") {
+            return `<i class="fa-solid fa-cart-shopping icon-shopping"></i> Shopping`;
+        }
+
+        if (category === "Health") {
+            return `<i class="fa-solid fa-heart icon-health"></i> Health`;
+        }
+
+        if (category === "Work") {
+            return `<i class="fa-solid fa-briefcase icon-work"></i> Work`;
+        }
+
+        if (category === "Personal") {
+            return `<i class="fa-solid fa-user icon-personal"></i> Personal`;
+        }
+
+        if (category === "Study") {
+            return `<i class="fa-solid fa-book-bookmark icon-study"></i> Study`;
+        }
+    }
+
+    function saveTaskState() {
+
+        const input = taskBar.querySelector(".task-edit-input");
+        const categorySelect = taskBar.querySelector(".edit-category");
+
+        const newTask = input.value.trim() || "Untitled Task";
+        const selectedCategory = categorySelect.value;
+
+        taskContext.innerText = newTask;
+        categoryBadge.innerHTML = getCategoryHTML(selectedCategory);
+
+        editBtn.classList.remove("editing");
+
+        editBtn.style.backgroundColor = "#fb8500";
+        editBtn.style.color = "#f1faee";
+        editBtn.innerHTML = `
+        <i class="ri-pencil-fill"></i>
+        Edit`;
+    }
+
     // Edit button logic
     editBtn.addEventListener("click", () => {
-        if (taskContext.contentEditable !== "true") {
-            taskContext.contentEditable = true;
-            taskContext.focus();
+
+        if (!editBtn.classList.contains("editing")) {
+
+            editBtn.classList.add("editing");
+
+            const currentText = taskContext.innerText;
+            const currentCategory = categoryBadge.textContent.trim();
+
+            taskContext.innerHTML = `
+            <input class="task-edit-input" value="${currentText}">
+        `;
+
+            categoryBadge.innerHTML = `
+            <select class="edit-category">
+                <option value="Shopping">Shopping</option>
+                <option value="Health">Health</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Study">Study</option>
+            </select>
+        `;
+
+            const categorySelect = categoryBadge.querySelector(".edit-category");
+            categorySelect.value = currentCategory;
+
             editBtn.style.backgroundColor = "#00FF62";
             editBtn.style.color = "#011627";
             editBtn.innerHTML = `<i class="ri-check-double-line"></i> Confirm Edit`;
@@ -166,17 +233,6 @@ addTask.addEventListener("click", () => {
             saveTaskState();
         }
     });
-
-    function saveTaskState() {
-        taskContext.contentEditable = false;
-        editBtn.style.backgroundColor = "#fb8500";
-        editBtn.style.color = "#f1faee";
-        editBtn.innerHTML = `<i class="ri-pencil-fill"></i> Edit`;
-
-        if (taskContext.innerText.trim() === "") {
-            taskContext.innerText = "Untitled Task";
-        }
-    }
 
     // Custom Delete Alert Logic
     delBtn.addEventListener("click", () => {
