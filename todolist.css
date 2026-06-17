@@ -74,9 +74,16 @@ main::-webkit-scrollbar {
 header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
     padding: 0 1rem;
     flex-wrap: wrap;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 input {
@@ -466,6 +473,24 @@ button{
 #custom-dropdown .arrow {
     transition: transform 0.3s ease;
     margin-left: auto;
+}
+
+.task-edit-input {
+    min-width: none;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    width: 100%;
+    font-family: inherit;
+}
+
+.edit-category {
+    background: #164a6b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.3rem;
 }
 
 @media (max-width:650px) {
