@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="todolist.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <main>
+        <img class="click-here arrow" src="./click here.svg" alt="">
+        <header>
+            <input type="text" placeholder="Type your task">
+
+            <div class="dropdown-container">
+                <div id="custom-dropdown" class="dropdown-header-center" data-value="">
+                    <span>Select Category</span>
+                    <i class="fa-solid fa-chevron-down arrow"></i>
+                </div>
+                <ul class="dropdown-list">
+                    <li data-value="Shopping"><i class="fa-solid fa-cart-shopping icon-shopping"></i> Shopping</li>
+                    <li data-value="Health"><i class="fa-solid fa-heart icon-health"></i> Health</li>
+                    <li data-value="Work"><i class="fa-solid fa-briefcase icon-work"></i> Work</li>
+                    <li data-value="Personal"><i class="fa-solid fa-user icon-personal"></i> Personal</li>
+                    <li data-value="Study"><i class="fa-solid fa-book-bookmark icon-study"></i> Study</li>
+                </ul>
+            </div>
+
+            <button id="addbtn">
+                <i class="fa-solid fa-circle-plus"></i>
+                Add Task
+            </button>
+        </header>
+        <div class="divider"></div>
+        <section></section>
+
+        <div class="blur-backgroud et">
+            <div class="enter-task">
+                <h4 id="error-message">Please enter a Task!</h4>
+                <span class="ok-btn">OK</span>
+            </div>
+        </div>
+
+        <div class="blur-backgroud dc">
+            <div class="del-confirm">
+                <h4>Are you sure you want <br> to delete this task?</h4>
+                <div class="con-btns">
+                    <span class="yes-del">Yes, Delete It</span>
+                    <span class="no-keep">No, Keep It</span>
+                </div>
+            </div>
+        </div>
+        <div class="arrow">
+            <img class="click-here" src="./click here.svg">
+        </div>
+    </main>
+    <script src="todolist.js"></script>
+</body>
+</html>
