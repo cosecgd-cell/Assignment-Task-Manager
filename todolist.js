@@ -13,6 +13,7 @@ const customDropdown = document.querySelector("#custom-dropdown");
 const dropdownList = document.querySelector(".dropdown-list");
 const selectedSpan = customDropdown.querySelector("span");
 const listItems = document.querySelectorAll(".dropdown-list li");
+const noTaskAdded = document.querySelector(".no-task-img");
 
 let taskToDelete = null;
 
