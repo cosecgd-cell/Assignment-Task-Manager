@@ -49,6 +49,7 @@ function toggleArrow() {
     const totalTasks = todoBox.querySelectorAll(".task-bar").length;
     if (totalTasks === 1) {
         arrow.style.display = "flex";
+        noTaskAdded.style.display = "none" 
     } else {
         arrow.style.display = "none";
     }
