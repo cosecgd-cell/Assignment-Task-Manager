@@ -402,6 +402,14 @@ button{
     transition: 0.3s;
 }
 
+.no-task-img{
+    position: absolute;
+    height: 20rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
 .dropdown-header-center {
     display: flex;
     align-items: center;
